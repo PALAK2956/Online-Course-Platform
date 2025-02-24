@@ -1,0 +1,225 @@
+{% extends 'base.html' %}
+
+{% block style %}
+<style>
+    h1 {
+        color: rgb(55, 58, 67);
+    }
+    /* Reset some default styles */
+   
+    /* Featured questions section */
+    .featured-questions {
+        max-width: 1200px;
+        margin: auto;
+        padding: 0 20px;
+        background-color: #f9f9f9;  /* Light background for the section */
+        border-radius: 8px;         /* Rounded corners for the section */
+    }
+
+    .featured-questions h1 {
+        justify-content: center;
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 2rem;
+        color: #333;
+    }
+
+    .search-bar {
+        margin-bottom: 30px;
+        display: flex;
+        justify-content: center;
+        padding: 10px;
+    }
+
+    .search-bar input {
+        padding: 8px 15px;
+        font-size: 1rem;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        width: 300px;
+    }
+
+    .questions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+
+    .question-item {
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 10px;
+        font-family: sans-serif;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        position: relative; /* This allows positioning of the close button */
+        border-left: 5px solid #4CAF50; /* Green left border for better visibility */
+        transition: all 0.3s ease;
+    }
+
+    .question-item:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        border-left: 5px solid #b56fcf; /* Blue left border on hover */
+    }
+
+    .question-item h3 {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+        color: #333;
+    }
+
+    .question-item p {
+        color: #555;
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
+    .close-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: transparent;
+        border: none;
+        font-size: 1.5rem;
+        color: #888;
+        cursor: pointer;
+    }
+
+    .close-btn:hover {
+        color: #f44336;  /* Red color for the close button */
+    }
+
+    /* Style for the Answer button */
+    #ans {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #a275cc; /* Green background */
+        color: white;
+        font-size: 1rem;
+        font-weight: bold;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        margin-top: 10px;
+    }
+
+    #ans:hover {
+        background-color: #a2c1a4;  /* Darker green on hover */
+        transform: translateY(-2px);  /* Slight lift on hover */
+    }
+
+    #ans:active {
+        background-color: #97bb99;  /* Even darker green when pressed */
+        transform: translateY(0);    /* Reset position when clicked */
+    }
+
+    /* Popup form styles */
+    .popup-form {
+        display: none; /* Hidden by default */
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        width: 400px;
+        z-index: 1000;
+    }
+
+    .popup-form textarea {
+        width: 100%;
+        height: 100px;
+        margin-bottom: 15px;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 1rem;
+        resize: none;
+    }
+
+    .popup-form button {
+        padding: 10px 20px;
+        background-color: #9e64ca;
+        color: white;
+        font-size: 1rem;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .popup-form button:hover {
+        background-color: #c59ec9;
+    }
+
+    .popup-form button:active {
+        background-color: #be83cd;
+    }
+
+    .popup-form .close-popup {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        background: transparent;
+        border: none;
+        font-size: 1.5rem;
+        color: #888;
+        cursor: pointer;
+    }
+</style>
+{% endblock %}
+
+{% block main %}
+<section class="featured-questions">
+    <h1 style="font-family: cursive;">Solve Students Doubts</h1>
+    <div class="questions" id="questionList">
+        {% for item in doubt %}
+        <div class="question-item">
+            <h3>{{item.name}}</h3>
+            <h3>{{item.email}}</h3>
+            <button class="close-btn" onclick="hideQuestion(this)">×</button>
+            <h3>{{item.message}}</h3>
+            <button id="ans" onclick="showPopupForm(this)">Answer</button>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- Popup form for answering -->
+<div class="popup-form" id="popupForm">
+    <button class="close-popup" onclick="closePopupForm()">×</button>
+    <h3>Provide Your Answer</h3>
+    <form action="{{ url_for('submit_answer') }}" method="post">
+        <textarea id="answerText" name="answer" placeholder="Write your answer here..."></textarea>
+        <button type="submit" id="submitBtn">Submit Answer</button>
+    </form>
+</div>
+
+<script>
+   
+    
+    function showPopupForm(button) {
+        // Get the popup form and show it
+        const popupForm = document.getElementById('popupForm');
+        popupForm.style.display = 'block';
+    }
+
+    // Function to close the popup form
+    function closePopupForm() {
+        const popupForm = document.getElementById('popupForm');
+        popupForm.style.display = 'none';
+    }
+
+    // Function to hide a question item when the close button is clicked
+    function hideQuestion(button) {
+        const questionItem = button.closest('.question-item');
+        questionItem.style.display = 'none';
+    }
+
+   
+
+
+</script>
+{% endblock %}

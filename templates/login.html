@@ -1,0 +1,192 @@
+{% extends 'base.html' %}
+
+{% block style %}
+<style>
+    /* Full-page container */
+    .container {
+        display: flex;
+        height: 100vh;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Left side - Image */
+    .left-section {
+        flex: 1;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        /* background-color: #f8f8f8; */ 
+    }
+
+    .left-section img {
+        width: 80%;
+        max-width: 500px;
+        height: auto;
+        border-radius: 10px;
+    }
+
+    /* Right side - Form */
+    .right-section {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #ffffff;
+    }
+
+    /* Form Styling */
+    .form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 30px;
+        width: 450px;
+        border-radius: 10px;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        border: 1px;
+        /* box-shadow: #252727; */
+    }
+
+    ::placeholder {
+        font-family: inherit;
+    }
+
+    .inputForm {
+        border: 1.5px solid #ecedec;
+        border-radius: 10px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        padding-left: 10px;
+        transition: 0.2s ease-in-out;
+    }
+
+    .input {
+        margin-left: 10px;
+        border-radius: 10px;
+        border: none;
+        width: 85%;
+        height: 100%;
+    }
+
+    .input:focus {
+        outline: none;
+    }
+
+    .inputForm:focus-within {
+        border: 1.5px solid #2d79f3;
+    }
+
+    .button-submit {
+        margin: 20px 0 10px 0;
+        background-color: #151717;
+        border: none;
+        color: white;
+        font-size: 15px;
+        font-weight: 500;
+        border-radius: 10px;
+        height: 50px;
+        width: 100%;
+        cursor: pointer;
+    }
+
+    .button-submit:hover {
+        background-color: #252727;
+    }
+
+    .p {
+        text-align: center;
+        color: black;
+        font-size: 14px;
+        margin: 5px 0;
+    }
+
+    /* Social Login Buttons */
+    .social-buttons {
+        display: flex;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .btn {
+        flex: 1;
+        height: 50px;
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: 500;
+        gap: 10px;
+        border: 1px solid #ededef;
+        background-color: white;
+        cursor: pointer;
+        transition: 0.2s ease-in-out;
+    }
+
+    .btn:hover {
+        border: 1px solid #2d79f3;
+    }
+    .Shivam{
+    text-decoration: none;
+    color: black;
+    margin-left: 170px;
+    /* border: 2px  black; */
+    border-left: none;
+    border-top: none;
+    border-right: none;
+}
+.shivam{
+    text-decoration: none;
+    color: black;
+    
+}
+
+</style>
+{% endblock %}
+
+
+    {% block main %}
+    
+    <!-- <h2 style="text-align: center;color:#415575 ">Log in with your account</h2> -->
+    <div class="container">
+        <!-- Left Section: Image -->
+        <div class="left-section">
+            <img src="/static/images/online-learning-and-working-concept-vector.jpg" alt="Online Learning">
+        </div>
+
+        <!-- Right Section: Login Form -->
+        <div class="right-section">
+            <form class="form" method="post">
+                <div class="flex-column">
+                    <label>Email </label>
+                </div>
+                <div class="inputForm">
+                    <input type="text" name="email" class="input" placeholder="Enter your Email">
+                </div>
+
+                <div class="flex-column">
+                    <label>Password </label>
+                </div>
+                <div class="inputForm">
+                    <input type="password" name="password" class="input" placeholder="Enter your Password">
+                </div>
+
+                <div class="flex-row">
+                    <div>
+                        <input type="checkbox">
+                        <label>Remember me </label>
+                    </div>
+                    <a href="#" class="Shivam">Forgot Password</a>
+                </div>
+
+                <button class="button-submit">Log In</button>
+                <p class="p">Don't have an account? <span class="span"><a href="{{ url_for('sign_up' ) }}" class="shivam">Sign Up</a></span></p>
+                
+            </form>
+        </div>
+    </div>
+
+    {% endblock %}

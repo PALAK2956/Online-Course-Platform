@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% block style %}
+
+    <style>
+        
+#form-details {
+  display: flex;
+  /* justify-content: space-between; */
+  /* margin: 30px; */
+  padding: 80px;
+  border: 1px solid #e1e1e1;
+  justify-content: center;
+  text-align: center;
+  margin:auto;
+  margin-bottom: 50px;
+  margin-top:60px;
+  width:80%;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+#head{
+    font-size: 34px;
+    text-align: center;
+    justify-content: center;
+}
+#form-details form {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+#form-details form input,
+#form-details form textarea {
+  width: 100%;
+  padding: 12px 15px;
+  outline: none;
+  margin-bottom: 20px;
+  border: 1px solid #e1e1e1;
+}
+#form-details form input:hover{
+    border: 1px solid black;
+}
+#form-details form textarea:hover{
+    border: 1px solid black;
+}
+#form-details form button {
+  background-color: #088178;
+  color: #fff;
+}
+
+#form-details .people div {
+  padding-bottom: 25px;
+  display: flex;
+  align-items: flex-start;
+}
+
+#form-details .people div img {
+  width: 65px;
+  height: 65px;
+  object-fit: cover;
+  margin-right: 15px;
+}
+
+#form-details .people div p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 25px;
+}
+
+#form-details .people div p span {
+  display: block;
+  font-size: 16px;
+  font-weight: 600;
+  color: #000;
+}
+    </style>
+
+{% endblock %}
+
+
+{% block main %}
+<section id="form-details">
+
+    <form id="msg" method="post"  action="{{ url_for('submit') }}">
+        <span id="head">Ask from Experts</span>
+        <h2>No more doubts!</h2>
+        <input type="text" name="name" id="name" placeholder="Your Name" required>
+        <input type="email" id="email" name="email" placeholder="E-mail" required>
+        <input type="text" name="subject" id="subject" placeholder="Subject" required>
+        <textarea id="message-text" name="message-text" cols="30" rows="10" placeholder="Your question" required></textarea>
+        <button type="submit" class="normal">Submit</button>
+       
+    </form>
+    <img src="https://img.freepik.com/premium-vector/woman-is-sitting-sofa-with-laptop-girl-working-home-sofa-vector-illustration_1123373-76.jpg?w=360" alt="" height="500px" width="500px">
+</section>
+{% endblock %}

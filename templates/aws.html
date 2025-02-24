@@ -1,0 +1,305 @@
+{% extends 'base.html' %}
+    {% block style %}
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* AWS Title Section */
+        .aws-title {
+            text-align: center;
+            padding: 20px;
+            background-color: #b6c8e3;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .aws-logo {
+            width: 100px;
+        }
+
+        /* Bundle Offer Section */
+        .bundle {
+            background-color: #ffffff;
+            padding: 30px;
+            margin: 20px auto;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 600px;
+        }
+
+        /* Filters */
+        .filters {
+            text-align: center;
+            margin: 20px;
+        }
+
+        select, input {
+            padding: 10px;
+            margin: 10px;
+            font-size: 1rem;
+        }
+
+        /* Course Section */
+        .courses {
+            padding: 30px 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            text-align: center;
+        }
+
+        .course-list {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .course {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+
+        .course img {
+            width: 100%;
+            height: 40%;
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
+
+        /* Buttons */
+        .btn {
+            background-color: #ff9900;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease-in-out;
+        }
+
+        .btn:hover {
+            background-color: #e68900;
+        }
+        
+        /* In-Demand Certifications with Sliding Effect */
+        .certifications {
+            padding: 40px 10%;
+            background: #f8f9fa;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .certifications h2 {
+            text-align: left;
+        }
+
+        .cert-list {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            white-space: nowrap;
+            padding-bottom: 10px;
+        }
+
+        .cert-card {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            min-width: 250px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .cert-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .prev {
+            left: 10px;
+        }
+
+        .next {
+            right: 10px;
+        }
+
+        /* Certifications by Skill */
+        .cert-skills {
+            padding: 40px 10%;
+            text-align: left;
+        }
+
+        .cert-skill-list {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .cert-skill-card {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            flex: 1 1 calc(25% - 20px);
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            min-width: 250px
+
+        }
+
+        /* Certifications by Skill */
+        .cert-skills {
+            padding: 40px 10%;
+            text-align: left;
+        }
+
+        .cert-skill-list {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .cert-skill-card {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            flex: 1 1 calc(25% - 20px);
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            min-width: 250px;
+        }
+    </style>
+    {% endblock %}
+
+    {% block main %}
+    <div class="aws-title">
+        <img src="https://img-c.udemycdn.com/open-badges/v2/badge-class/1641170563/image8965422010918071331.png" alt="AWS Certification Logo" class="aws-logo">
+        <div>
+            <h1>AWS Certified Solutions Architect - Associate Courses</h1>
+            <p>Earners of this certification have a comprehensive understanding of AWS services and technologies.</p>
+        </div>
+    </div>
+
+    <!-- Filters -->
+    <div class="filters">
+        <label for="category">Filter by Category:</label>
+        <select id="category">
+            <option value="all">All</option>
+            <option value="beginner">Beginner</option>
+            <option value="intermediate">Intermediate</option>
+            <option value="advanced">Advanced</option>
+        </select>
+        <label for="search">Search Courses:</label>
+        <input type="text" id="search" placeholder="Search for courses...">
+    </div>
+
+    <!-- Courses Section -->
+    <section class="courses">
+        <div class="container">
+            <h2>Popular AWS Certification Courses</h2>
+            <div class="course-list">
+                <div class="course" data-category="beginner">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqtol9GjOBHMirHFmv1SN8xcdNHI7UhVtgRg&s" alt="AWS Course 3">
+                    <h3>AWS Cloud Practitioner Essentials</h3>
+                    <p>⭐ 4.5 (78,000 reviews)</p>
+                    <p class="price">₹3,299 <span class="original-price">₹2,999</span></p>
+                    <button class="btn">Enroll Now</button>
+                </div>
+                <div class="course" data-category="advanced">
+                    <img src="https://images.unsplash.com/photo-1588702547919-26089e690ecc?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="AWS Course 1">
+                    <h3>Ultimate AWS Solutions Architect 2025</h3>
+                    <p>⭐ 4.7 (248,486 reviews)</p>
+                    <p class="price">₹4,899 <span class="original-price">₹3,499</span></p>
+                    <button class="btn">Enroll Now</button>
+                </div>
+                <div class="course" data-category="intermediate">
+                    <img src="https://www.srigsystems.com/images/single-trainings/web-designing-online-training.jpg" alt="AWS Course 2">
+                    <h3>Practice Exams | AWS Solutions Architect</h3>
+                    <p>⭐ 4.6 (124,567 reviews)</p>
+                    <p class="price">₹5,989 <span class="original-price">₹3,699</span></p>
+                    <button class="btn">Enroll Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="certifications">
+        <h2>In Demand Certifications</h2>
+        <button class="cert-nav prev" onclick="scrollCerts(-300)">&#10094;</button>
+        <div class="cert-list" id="certScroll">
+            <div class="cert-card">hashicrop certification</div>
+            <div class="cert-card">AWS Certified Cloud Practitioner</div>
+            <div class="cert-card">AWS Certified Developer - Associate</div>
+            <div class="cert-card">AWS Certified SysOps Administrator</div>
+            <div class="cert-card">AWS Certified Security - Specialty</div>
+      
+        </div>
+        <button class="cert-nav next" onclick="scrollCerts(300)">&#10095;</button>
+    </section>
+
+    <script>
+        function scrollCerts(amount) {
+            document.getElementById('certScroll').scrollBy({ left: amount, behavior: 'smooth' });
+        }
+    </script>
+   
+
+    <section class="cert-skills">
+        <h2>Browse Amazon Web Services (AWS) Certifications by Skill</h2>
+        <div class="cert-skill-list">
+            <div class="cert-skill-card">Cloud Certification</div>
+            <div class="cert-skill-card">Networking Certification</div>
+            <div class="cert-skill-card">Cybersecurity Certification</div>
+            <div class="cert-skill-card">Coding Certification</div>
+        </div>
+    </section>
+
+
+    <script>
+        document.getElementById('category').addEventListener('change', function() {
+            let selectedCategory = this.value;
+            let courses = document.querySelectorAll('.course');
+            
+            courses.forEach(course => {
+                if (selectedCategory === 'all' || course.getAttribute('data-category') === selectedCategory) {
+                    course.style.display = 'block';
+                } else {
+                    course.style.display = 'none';
+                }
+            });
+        });
+
+        document.getElementById('search').addEventListener('input', function() {
+            let searchTerm = this.value.toLowerCase();
+            let courses = document.querySelectorAll('.course');
+            
+            courses.forEach(course => {
+                let title = course.querySelector('h3').textContent.toLowerCase();
+                if (title.includes(searchTerm)) {
+                    course.style.display = 'block';
+                } else {
+                    course.style.display = 'none';
+                }
+            });
+        });
+    </script>
+    {% endblock %}

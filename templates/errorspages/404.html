@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        .error-container {
+            background: white;
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+            margin:auto;
+            margin-top:100px;
+            margin-bottom: 200px;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        .error-code {
+            font-size: 120px;
+            font-weight: bold;
+            color: #e6525f;
+        }
+        .error-message {
+            font-size: 26px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .btn-primary {
+            background-color: #ae67e5;
+            border-color: #784587;
+            padding: 10px 20px;
+            font-size: 18px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #a76ce2;
+            border-color: #cc86e3;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style> 
+</body>
+</html>
+ 
+<div class="error-container">
+    <div class="error-code">{{ code }}</div>
+    <div class="error-message">{{ message }}</div>
+    <a href="{{ url_for('home' ) }}" class="btn btn-primary">Go Home</a>
+</div>
+</body>
+</html>

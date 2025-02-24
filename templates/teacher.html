@@ -1,0 +1,191 @@
+{% extends 'base.html' %}
+
+{% block style %}
+
+<style>
+   
+   #vanshu{
+    text-align: center; font-family: 'Satisfy', serif;
+font-weight: 800;
+font-style: normal;
+text-align: center;
+color:rgb(65, 87, 119);
+   }
+    .container {
+        display: flex;
+        height: 100vh;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        margin-top:-80px; /* Prevent navbar overlap */
+    }
+
+    .left-section {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+    }
+
+    .left-section img {
+        width: 80%;
+        max-width: 500px;
+        height: auto;
+        border-radius: 10px;
+    }
+
+    .right-section {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .form {
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* Two equal columns */
+        gap: 15px;
+        padding: 30px;
+        width: 600px;
+        border-radius: 10px;
+    }
+
+    .inputForm {
+        border: 1.5px solid #ecedec;
+        border-radius: 10px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        padding-left: 10px;
+        transition: 0.2s ease-in-out;
+        width: 100%;
+    }
+
+    .input {
+        margin-left: 10px;
+        border-radius: 10px;
+        border: none;
+        width: 90%;
+        height: 100%;
+    }
+
+    .input:focus {
+        outline: none;
+    }
+
+    .inputForm:focus-within {
+        border: 1.5px solid #2d79f3;
+    }
+
+    .button-submit {
+        grid-column: span 2; /* Makes button span full width */
+        margin-top: 20px;
+        background-color: #151717;
+        border: none;
+        color: white;
+        font-size: 15px;
+        font-weight: 500;
+        border-radius: 10px;
+        height: 50px;
+        cursor: pointer;
+    }
+
+    .button-submit:hover {
+        background-color: #252727;
+    }
+
+    .full-width {
+        grid-column: span 2; /* Forces full width */
+    }
+
+    .checkbox-container {
+        grid-column: span 2;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    select, option {
+        width: 100%;
+        height: 50px;
+        padding: 10px;
+        border: 1.5px solid #ecedec;
+        border-radius: 10px;
+        background-color: white;
+        font-size: 15px;
+        cursor: pointer;
+        transition: 0.2s ease-in-out;
+    }
+
+    select:focus {
+        border: 1.5px solid #9daec9;
+        outline: none;
+    }
+
+    .form-footer {
+        grid-column: span 2;
+        text-align: center;
+        margin-top: 10px;
+    }
+</style>
+
+{% endblock %}
+
+{% block main %}
+<h2 id="vanshu">Sign up as Teacher</h2>
+<div class="container">
+    <div class="left-section">
+        <img src="https://static.vecteezy.com/system/resources/previews/002/403/601/non_2x/woman-working-at-laptop-from-home-vector.jpg" alt="Teacher Sign Up">
+    </div>
+
+    <div class="right-section">
+        <form action="{{ url_for('teacher') }}" class="form" method="post">
+            <div class="inputForm">
+                <input type="text" name="fullname" class="input" placeholder="Full Name" required>
+            </div>
+            
+            <div class="inputForm">
+                <input type="email" name="email" class="input" placeholder="Email" required>
+            </div>
+            
+            <div class="inputForm">
+                <input type="password" name="password" class="input" placeholder="Password" required>
+            </div>
+            
+            <div class="inputForm">
+                <input type="text" name="subject" class="input" placeholder="Subject Expertise" required>
+            </div>
+            
+            <div class="inputForm">
+                <input type="number" name="experience" class="input" placeholder="Years of Experience" required>
+            </div>
+
+            <div class="inputForm">
+                <input type="text" name="qualification" class="input" placeholder="Highest Qualification" required>
+            </div>
+
+            <div class="inputForm">
+
+                <label for="role">Select Gender</label>
+                <select id="role" name="gender" required>
+                    <option value="">-- Select --</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select><br><br>
+            
+            </div>
+           <div class="inputForm">
+            <div class="checkbox-container">
+                <input type="checkbox" name="agree" required>
+                <label>I agree to the terms and conditions</label>
+            </div>
+           </div>
+
+
+            <button class="button-submit">Sign Up</button>
+            <p class="form-footer">Already have an account? <a href="{{ url_for('log_in') }}">Log in</a></p>
+        </form>
+    </div>
+</div>
+{% endblock %}

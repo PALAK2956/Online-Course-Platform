@@ -1,0 +1,589 @@
+{% extends 'base.html' %}
+{% block style %}
+<style>
+ 
+
+.img{
+    background-image: url(https://wallpapers.com/images/hd/top-view-study-aesthetic-desk-xqhwe4ieuwsipmtc.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom;
+    width: 100%; /* Ensure it takes full width */
+    height: 300px; /* Adjust height as needed */
+    margin:0%;
+}
+/* Pricing Section */
+.pricing-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 40px 0;
+    flex-wrap: wrap;
+}
+
+.pricing-plan {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 280px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.pricing-plan:hover {
+    transform: translateY(-10px);
+}
+
+.pricing-plan h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.price {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #5c6bc0;
+    margin-bottom: 10px;
+}
+
+.plan-description {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+}
+
+ul {
+    list-style-type: none;
+    margin-bottom: 20px;
+}
+
+ul li {
+    margin-bottom: 10px;
+    font-size: 1rem;
+}
+
+button {
+    background-color: #8f97c4;
+    border: none;
+    padding: 12px 30px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #3f4f91;
+}
+
+.featured {
+    background-color: #f3f4fb;
+    border: 2px solid #5c6bc0;
+    transform: scale(1.05);
+}
+
+/* Testimonials Section */
+/* See What Others Are Learning */
+.see-others-learning {
+    padding: 50px 20px;
+    background-color: #f8f8f8;
+    text-align: center;
+}
+
+.see-others-learning h2 {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    color: #333;
+}
+
+/* Container for learning cards */
+.learning-cards {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+/* Individual Card */
+.card {
+    background-color: #fff;
+    width: 300px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Card Image */
+.card-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+/* Card Content */
+.card-content h3 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.card-content p {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.card-course {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #5c6bc0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Compare Plans Section */
+.compare-plans {
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.compare-plans h2 {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+
+th, td {
+    padding: 10px 20px;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #5c6bc0;
+    color: white;
+}
+
+td {
+    text-align: center;
+}
+
+/* FAQ Section */
+/* FAQ Section */
+.faq {
+    padding: 50px 20px;
+    background-color: #f4f4f4;
+}
+
+.faq h2 {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    text-align: center;
+    color: #333;
+}
+
+/* FAQ Item Styling */
+.faq-item {
+    background-color: #fff;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+/* FAQ Question Styling */
+.faq-question {
+    padding: 20px;
+    background-color: #5c6bc0;
+    color: white;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+/* Toggle Icon Styling */
+.toggle-icon {
+    font-size: 1.5rem;
+    color: white;
+    transition: transform 0.3s ease;
+}
+
+/* FAQ Answer Styling */
+.faq-answer {
+    display: none; /* Initially hidden */
+    padding: 20px;
+    font-size: 1.1rem;
+    color: #555;
+    background-color: #fafafa;
+    border-top: 1px solid #ddd;
+}
+
+/* On Hover Effect for FAQ Question */
+.faq-question:hover {
+    background-color:#7a89c2;
+}
+
+/* When FAQ Item is Active (i.e., Answer is Visible) */
+.faq-item.active .faq-answer {
+    display: block;
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* Rotate Toggle Icon when Active */
+.faq-item.active .toggle-icon {
+    transform: rotate(45deg); 
+}
+a{
+    text-decoration: none;
+}
+/* Animation for Answer Visibility */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Footer */
+
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .pricing-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .pricing-plan {
+        width: 100%;
+        max-width: 400px;
+        margin-bottom: 20px;
+    }
+
+    .learning-cards {
+        gap: 20px;
+    }
+
+    .card {
+        width: 280px;
+    }
+}
+
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem;
+    }
+
+    header p {
+        font-size: 1rem;
+    }
+
+    .pricing-container {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .pricing-plan {
+        width: 100%;
+        max-width: 350px;
+        margin-bottom: 20px;
+    }
+
+    .learning-cards {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .card {
+        width: 100%;
+        max-width: 90%;
+    }
+
+    .see-others-learning h2 {
+        font-size: 2rem;
+    }
+
+    .compare-plans h2 {
+        font-size: 2rem;
+    }
+
+    .faq h2 {
+        font-size: 2rem;
+    }
+
+    .faq-question {
+        font-size: 1.2rem;
+    }
+
+    .faq-answer {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.8rem;
+    }
+
+    .price {
+        font-size: 2rem;
+    }
+
+    .pricing-plan h2 {
+        font-size: 1.6rem;
+    }
+
+    .card-content h3 {
+        font-size: 1.2rem;
+    }
+
+    .card-content p {
+        font-size: 0.95rem;
+    }
+
+    .card-course {
+        font-size: 1rem;
+    }
+
+    .faq-question {
+        font-size: 1rem;
+    }
+
+    footer {
+        padding: 15px;
+    }
+}
+   </style>
+{% endblock %}
+   
+
+   {% block main %}
+   <div style="color: #354f6e;text-align: center;padding:20px;">
+    <h1>Our Pricing Plans</h1>
+    <p>Find the right plan for you and start learning today!</p>
+</div>
+    <div class="img"></div>
+   
+
+<!-- Our Plans Section -->
+<section class="pricing-container">
+   <div class="pricing-plan">
+       <h2>Basic</h2>
+       <p class="price">$0</p>
+       <p class="plan-description">Free for beginners!</p>
+       <ul>
+           <li>Access to free courses</li>
+           <li>Community support</li>
+           <li>1 Course per month</li>
+       </ul>
+       <button>Get Now</button>
+   </div>
+
+   <div class="pricing-plan featured">
+       <h2>Standard</h2>
+       <p class="price">$19.99/month</p>
+       <p class="plan-description">Most popular plan</p>
+       <ul>
+           <li>Access to all courses</li>
+           <li>Priority support</li>
+           <li>Unlimited courses</li>
+           <li>Download courses</li>
+       </ul>
+       <a href=""><button>Get Started</button></a>
+   </div>
+
+   <div class="pricing-plan">
+       <h2>Premium</h2>
+       <p class="price">$39.99/month</p>
+       <p class="plan-description">Advanced learning features</p>
+       <ul>
+           <li>Everything in Standard plan</li>
+           <li>Exclusive live sessions</li>
+           <li>Certificate of completion</li>
+           <li>Private tutoring</li>
+       </ul>
+       <button>Subscribe Now</button>
+   </div>
+</section>
+
+<!-- See What Others Are Learning -->
+<section class="see-others-learning">
+<h2>See What Others Are Learning Through Us</h2>
+<div class="learning-cards">
+   <div class="card">
+       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR51pkMBbvd0UGsaApoPx29fFOJxYtcmLoZ_zeoBetJOme9hkIiaTrBJ8XJCaRhxbANX24&usqp=CAU" alt="John D." class="card-img">
+       <div class="card-content">
+           <h3>John D.</h3>
+           <p>"The programming courses have been so impactful. I've landed my first developer job!"</p>
+           <span class="card-course">JavaScript & React</span>
+       </div>
+   </div>
+
+   <div class="card">
+       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSL0Sapo0eh10AASvkbSLjipxkGI-O6VLHJJQ&s" alt="Emily R." class="card-img">
+       <div class="card-content">
+           <h3>Emily R.</h3>
+           <p>"This platform helped me develop my design skills. I’m now a freelance designer!"</p>
+           <span class="card-course">UI/UX Design</span>
+       </div>
+   </div>
+
+   <div class="card">
+       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQulS6rUE9hjH8hwzXQkNVRVDnu-1O735z18A&s" alt="Mark S." class="card-img">
+       <div class="card-content">
+           <h3>Mark S.</h3>
+           <p>"I gained excellent business management skills and advanced my career!"</p>
+           <span class="card-course">Business Management</span>
+       </div>
+   </div>
+</div>
+</section>
+
+
+
+<!-- Compare Plans Section -->
+<section class="compare-plans">
+   <h2>Compare Plans</h2>
+   <table>
+       <tr>
+           <th>Feature</th>
+           <th>Basic</th>
+           <th>Standard</th>
+           <th>Premium</th>
+       </tr>
+       <tr>
+           <td>Access to Courses</td>
+           <td>Free</td>
+           <td>Unlimited</td>
+           <td>Unlimited</td>
+       </tr>
+       <tr>
+           <td>Community Support</td>
+           <td>Yes</td>
+           <td>Priority</td>
+           <td>Priority</td>
+       </tr>
+       <tr>
+           <td>Exclusive Courses</td>
+           <td>No</td>
+           <td>Yes</td>
+           <td>Yes</td>
+       </tr>
+       <tr>
+           <td>Download Courses</td>
+           <td>No</td>
+           <td>Yes</td>
+           <td>Yes</td>
+       </tr>
+       <tr>
+           <td>Private Tutoring</td>
+           <td>No</td>
+           <td>No</td>
+           <td>Yes</td>
+       </tr>
+       <tr>
+           <td>Live Sessions</td>
+           <td>No</td>
+           <td>No</td>
+           <td>Yes</td>
+       </tr>
+   </table>
+</section>
+
+
+<!-- FAQ Section -->
+<section class="faq">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+   <div class="faq-question">
+       <h3>What is the difference between the plans?</h3>
+       <span class="toggle-icon">+</span>
+   </div>
+   <div class="faq-answer">
+       <p>The Basic plan offers free courses with limited features, the Standard plan gives access to all courses and unlimited downloads, and the Premium plan includes advanced features like live sessions and private tutoring.</p>
+   </div>
+</div>
+
+<div class="faq-item">
+   <div class="faq-question">
+       <h3>Can I upgrade my plan later?</h3>
+       <span class="toggle-icon">+</span>
+   </div>
+   <div class="faq-answer">
+       <p>Yes! You can easily upgrade your plan at any time from your account settings.</p>
+   </div>
+</div>
+
+<div class="faq-item">
+   <div class="faq-question">
+       <h3>Do you offer refunds?</h3>
+       <span class="toggle-icon">+</span>
+   </div>
+   <div class="faq-answer">
+       <p>Yes, we offer a 30-day money-back guarantee for all our subscription plans if you're not satisfied with the service.</p>
+   </div>
+</div>
+
+<div class="faq-item">
+   <div class="faq-question">
+       <h3>How can I cancel my subscription?</h3>
+       <span class="toggle-icon">+</span>
+   </div>
+   <div class="faq-answer">
+       <p>You can cancel your subscription anytime by going to your account settings and following the cancellation instructions.</p>
+   </div>
+</div>
+</section>
+<script>
+   
+   const faqItems = document.querySelectorAll('.faq-item');
+
+   
+   faqItems.forEach(item => {
+       const question = item.querySelector('.faq-question');
+       const toggleIcon = item.querySelector('.toggle-icon');
+
+       question.addEventListener('click', () => {
+           
+           item.classList.toggle('active');
+
+           
+           if (item.classList.contains('active')) {
+               toggleIcon.textContent = '−'; 
+           } else {
+               toggleIcon.textContent = '+'; 
+           }
+
+       
+           faqItems.forEach(otherItem => {
+               if (otherItem !== item) {
+                   otherItem.classList.remove('active');
+                   otherItem.querySelector('.toggle-icon').textContent = '+';
+               }
+           });
+       });
+   });
+</script>
+
+   {% endblock %}    
+ 

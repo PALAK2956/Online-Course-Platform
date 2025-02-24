@@ -1,0 +1,229 @@
+{% extends 'base.html' %}
+
+{% block style %}
+<style>
+    /* Full-page container */
+    .container {
+        display: flex;
+        height: 100vh;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Left side - Image */
+    .left-section {
+        flex: 1;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        /* background-color: #f8f8f8; */ 
+    }
+
+    .left-section img {
+        width: 80%;
+        max-width: 500px;
+        height: auto;
+        border-radius: 10px;
+    }
+
+    /* Right side - Form */
+    .right-section {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #ffffff;
+    }
+
+    /* Form Styling */
+    .form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 30px;
+        width: 450px;
+        border-radius: 10px;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        border: 1px solid black;
+    }
+
+    ::placeholder {
+        font-family: inherit;
+    }
+
+    .inputForm {
+        border: 1.5px solid #ecedec;
+        border-radius: 10px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        padding-left: 10px;
+        transition: 0.2s ease-in-out;
+    }
+
+    .input {
+        margin-left: 10px;
+        border-radius: 10px;
+        border: none;
+        width: 85%;
+        height: 100%;
+    }
+
+    .input:focus {
+        outline: none;
+    }
+
+    .inputForm:focus-within {
+        border: 1.5px solid #2d79f3;
+    }
+
+    .button-submit {
+        margin: 20px 0 10px 0;
+        background-color: #151717;
+        border: none;
+        color: white;
+        font-size: 15px;
+        font-weight: 500;
+        border-radius: 10px;
+        height: 50px;
+        width: 100%;
+        cursor: pointer;
+    }
+
+    .button-submit:hover {
+        background-color: #252727;
+    }
+
+    .p {
+        text-align: center;
+        color: black;
+        font-size: 14px;
+        margin: 5px 0;
+    }
+
+    /* Social Login Buttons */
+    .social-buttons {
+        display: flex;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .btn {
+        flex: 1;
+        height: 50px;
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: 500;
+        gap: 10px;
+        border: 1px solid #ededef;
+        background-color: white;
+        cursor: pointer;
+        transition: 0.2s ease-in-out;
+    }
+
+    .btn:hover {
+        border: 1px solid #6d7b93;
+    }
+    /* Dropdown Styling */
+select {
+    width: 100%;
+    height: 50px;
+    padding: 10px;
+    border: 1.5px solid #ecedec;
+    border-radius: 10px;
+    background-color: white;
+    font-size: 15px;
+    font-family: inherit;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+}
+
+select:focus {
+    border: 1.5px solid #9daec9;
+    outline: none;
+}
+
+option {
+    font-size: 15px;
+    background-color: white;
+}
+.Shivam{
+    text-decoration: none;
+    color: black;
+    margin-left: 170px;
+    /* border: 2px dashed black; */
+    border-left: none;
+    border-top: none;
+    border-right: none;
+}
+.shivam{
+    text-decoration: none;
+    color: black;
+
+}
+
+</style>
+
+
+{% endblock %}
+    
+{% block main %}
+<div class="container">
+    <!-- Left Section: Image -->
+    <div class="left-section">
+        <img src="/static/images/signup.jpg" alt="Online Learning">
+    </div>
+
+    <!-- Right Section: Login Form -->
+    <div class="right-section">
+        <form class="form" method="post">
+            <div class="flex-column">
+                <label>Name </label>
+            </div>
+            <div class="inputForm">
+                <input type="text" name="username" class="input" placeholder="Enter your name" required>
+            </div>
+            <div class="flex-column">
+                <label>Email </label>
+            </div>
+            <div class="inputForm">
+                <input type="text" name="email"class="input" placeholder="Enter your Email" required>
+            </div>
+
+            <div class="flex-column">
+                <label>Password </label>
+            </div>
+            <div class="inputForm">
+                <input type="password" name="password" class="input" placeholder="Enter your Password" required>
+            </div>
+            <div>
+                <label for="role">Select Gender</label>
+            <select id="role" name="gender" required>
+                <option value="">-- Select --</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select><br><br>
+            </div>
+
+            <div class="flex-row">
+                <div>
+                    <input type="checkbox">
+                    <label>Remember me </label>
+                </div>
+                <a href="#" class="Shivam">Forgot Password?</a>
+            </div>
+
+            <button class="button-submit" >Sign up</button>
+            <p class="p">Already have an account? <span class="span"><a href="{{ url_for('log_in' ) }}" class="shivam">Log in</a></span></p>
+          
+
+        </form>
+    </div>
+</div>    
+{% endblock %}
+
+    

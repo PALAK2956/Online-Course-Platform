@@ -1,0 +1,1237 @@
+{% extends 'base.html' %}
+
+{% block style %}
+<style>
+    /* Global Styles
+    html, body {
+margin: 0;
+padding: 0;
+width: 100vw;
+overflow-x: hidden; /* Prevents horizontal scrolling */
+/* background-color: #fcf7f0
+} */ 
+
+    /* .navbar {
+        background-color: #5624d0;
+        color: white;
+        padding: 15px;
+        text-align: center;
+        font-size: 20px;
+        width: 100%;
+    } */
+    .title-section {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1000px;
+        width: 100%;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #fcf7f0;
+    }
+
+    .text-container {
+        flex: 1;
+        padding: 20px;
+        text-align: left;
+    }
+
+    .title {
+        font-size: 3em;
+        color: #333;
+        margin: 0;
+        font-family: 'Kumar One Outline', cursive;
+        text-transform: uppercase;
+    }
+
+    .subtitle {
+        font-size: 1.5em;
+        color: #777;
+        margin-top: 10px;
+        font-family: 'Poiret One', cursive;
+    }
+
+    .image-container {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .image {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+    }
+    @media (max-width: 768px) {
+        /* Title + Image Section for Mobile */
+        .title-section {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .text-container {
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* Move the GIF Above the Text on Mobile */
+        .image-container {
+            order: -1; /* Moves the image above the text */
+            margin-bottom: 20px;
+        }
+
+        .image {
+            width: 90%;
+            max-width: 400px;
+            height: auto;
+        }
+
+        .title {
+            font-size: 2.5em;
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+        }
+
+        /* Skills Section */
+        .skills-section h1 {
+            font-size: 28px;
+        }
+
+        .skills-section p {
+            font-size: 16px;
+        }
+
+        /* Category Pills */
+        .category-container {
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .category-pill {
+            min-width: auto;
+            padding: 10px 20px;
+        }
+    }
+
+    /* Skills Section */
+.skills-section {
+text-align: center;
+margin: 40px auto;
+padding: 20px;
+}
+
+.skills-section h1 {
+font-family: 'Playfair Display', serif;
+font-size: 36px;
+font-weight: 700;
+color: #1e1e1e;
+margin-bottom: 10px;
+}
+
+.skills-section p {
+font-family: 'Poppins', sans-serif;
+font-size: 18px;
+font-weight: 400;
+color: #666;
+}
+
+    /* Category Navigation Section */
+.category-container {
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 11px;
+padding: 10px;
+overflow: hidden;
+white-space: nowrap;
+}
+
+.category-pill {
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+padding: 10px 25px;
+border-radius: 25px;
+background-color: #f3f4f6;
+color: #1e1e1e;
+font-size: 16px;
+font-weight: 600;
+cursor: pointer;
+transition: all 0.3s ease-in-out;
+min-width: 100px;
+box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.category-pill:hover {
+transform: scale(1.05);
+}
+
+.category-pill span {
+font-size: 14px;
+font-weight: 400;
+color: #666;
+}
+
+
+    /* Hero Section */
+    .hero {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 50px 0;
+        /* background-color: white; */
+        /* box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); */
+        width: 100w;
+        
+    }
+
+    .hero-text {
+        max-width: 50%;
+    }
+
+    .hero h1 {
+        font-size: 36px;
+        margin-bottom: 10px;
+    }
+
+    .hero p {
+        font-size: 18px;
+        color: #555;
+    }
+
+    /* Illustration Image */
+    .hero-image img {
+        width: 400px;
+        height: auto;
+        max-width: 100%;
+        display: block;
+        object-fit: contain;
+    }
+
+    /* Courses Section */
+    .courses-section {
+        padding: 50px 0px;
+        width: 100vw;
+        
+        text-align: center;
+    }
+
+    .courses-section h2 {
+        font-size: 28px;
+        margin-bottom: 20px;
+    }
+
+    /* Scrollable Carousel */
+    .carousel-container {
+        width: 100vw;
+        /* max-width: 1300px; */
+        overflow: hidden;
+    }
+
+   /* Ensure cards stay within their space */
+.carousel {
+display: flex;
+gap: 10px;
+overflow-x: auto;
+scroll-behavior: smooth;
+padding: 10px 0;
+scrollbar-width: none; /* Hide scrollbar for Firefox */
+-ms-overflow-style: none; /* Hide scrollbar for IE */
+perspective: 1000px; /* Prevents overlapping weirdness */
+}
+
+.carousel::-webkit-scrollbar {
+display: none; /* Hide scrollbar for Chrome, Safari */
+}
+
+/* Individual Card */
+.card {
+min-width: 210px;
+max-width: 210px;
+height: 320px;
+background-color: #222;
+border-radius: 8px; /* Fixed border radius */
+overflow: hidden;
+position: relative;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+/* Ensure smooth hover effect without overlap */
+.card:hover {
+transform: scale(1.05);
+z-index: 10; /* Ensures it doesn’t overlap others */
+box-shadow: 0 8px 16px rgba(255, 255, 255, 0.2);
+border-radius: 8px; /* Keep the same border radius */
+}
+
+/* Ensure images inside the card don't distort */
+.card img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+border-radius: 8px; /* Maintain the rounded corners */
+}
+
+/* Prevent adjacent cards from being affected */
+.card:not(:hover) {
+transition: transform 0.3s ease-in-out;
+}
+
+    /* Overlay Content */
+    .overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+        padding: 10px;
+        color: white;
+    }
+
+    .badge {
+        background-color: #E50914;
+        color: white;
+        font-size: 11px;
+        padding: 3px 6px;
+        border-radius: 5px;
+    }
+
+    h3 {
+        font-size: 14px;
+        margin: 3px 0;
+        font-weight: bold;
+    }
+
+    p {
+        font-size: 12px;
+        opacity: 0.8;
+        margin-bottom: 3px;
+    }
+
+    .time {
+        font-size: 11px;
+        font-weight: bold;
+        opacity: 0.8;
+    }
+    .concepts-section {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 50px 5%;
+        gap: 50px;
+        width: 100vw;
+        background: rgb(200, 216, 205);
+    }
+
+    /* Ensure image is on the left */
+    .concepts-image {
+        flex: 1;
+        display: flex;
+        justify-content: flex-start; /* Aligns image to the left */
+    }
+
+    .concepts-image img {
+        width: 100%;
+        height: auto;
+        max-width: 100%;
+        display: block;
+        object-fit: contain;
+    }
+
+    /* Text section on the right */
+    .concepts-text {
+        flex: 1;
+        text-align: left;
+    }
+
+    .concepts-text h1 {
+        font-size: 48px;
+        font-weight: bold;
+        margin-bottom: 15px;
+        color: #000;
+    }
+
+    .concepts-text p {
+        font-size: 18px;
+        color: #333;
+        line-height: 1.6;
+        max-width: 450px;
+    }
+    @media (max-width: 768px) {
+        .concepts-section {
+            flex-direction: column;
+            text-align: center;
+            padding: 40px 5%;
+        }
+
+        .concepts-image, .concepts-text {
+            width: 100%;
+            text-align: center;
+        }
+
+        .concepts-text h1 {
+            font-size: 36px;
+        }
+
+        .concepts-text p {
+            font-size: 16px;
+        }}
+        /* teachers section */
+        /* Teachers Section Title */
+.teachers-title {
+text-align: center;
+font-size: 45px;
+font-weight: bold;
+font-family: 'Playfair Display', serif;
+color: #333;
+margin: 50px auto;
+}
+
+        main{
+width: min(1200px, 90vw);
+margin: auto;
+}
+.slider{
+width: 100%;
+height: var(--height);
+overflow: hidden;
+mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 10% 90%,
+    transparent
+);
+}
+.slider .list{
+display: flex;
+width: 100%;
+min-width: calc(var(--width) * var(--quantity));
+position: relative;
+}
+.slider .list .item{
+width: var(--width);
+height: var(--height);
+position: absolute;
+left: 100%;
+animation: autoRun 10s linear infinite;
+transition: filter 0.5s;
+animation-delay: calc( (10s / var(--quantity)) * (var(--position) - 1) - 10s)!important;
+}
+.slider .list .item img{
+width: 100%;
+}
+@keyframes autoRun{
+from{
+    left: 100%;
+}to{
+    left: calc(var(--width) * -1);
+}
+}
+.slider:hover .item{
+animation-play-state: paused!important;
+filter: grayscale(1);
+}
+.slider .item:hover{
+filter: grayscale(0);
+}
+/* Stop animation for the first slider */
+.slider:first-of-type .item {
+animation: none !important;
+position: relative;
+left: 0 !important;
+}
+
+/* Add gap between the two sliders */
+.slider {
+margin-bottom: 50px; /* Increases the gap between the two sliders */
+}
+
+/* Add spacing between individual images inside each slider */
+.slider .list {
+display: flex;
+gap: 20px; /* Adjust this value to control the space between images */
+}
+
+/* Keep the second slider moving */
+.slider[reverse="true"] .item {
+animation: reversePlay 10s linear infinite;
+}
+
+/* Moving animation for the second slider */
+@keyframes reversePlay {
+from {
+    left: calc(var(--width) * -1);
+}
+to {
+    left: 100%;
+}
+}
+
+/* boxes */
+.container {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        max-width: 1200px;
+        margin: auto;
+        gap: 50px;
+        padding: 50px 5%;
+    }
+
+    /* Vertical Line Between Sections */
+    .vertical-line {
+        width: 3px;
+        background-color: #ccc;
+        height: auto;
+        min-height: 250px;
+        align-self: center;
+    }
+
+    /* Section Styling */
+    section {
+        flex: 1;
+    }
+
+    section h2 {
+        font-size: 30px;
+        font-weight: 700;
+        margin-bottom: 20px;
+    }
+
+    section h2 span {
+        font-weight: 700;
+    }
+
+    /* Style for "Sell" and "Choose" */
+.green h2 span {
+font-size: 36px;
+font-weight: bold;
+background: linear-gradient(45deg, #0f6b4c, #14a36b);
+/* -webkit-background-clip: text; */
+/* -webkit-text-fill-color: transparent; */
+}
+
+.pink h2 span {
+font-size: 36px;
+font-weight: bold;
+background: linear-gradient(45deg, #ff168a, #ff5dbd);
+/* -webkit-background-clip: text; */
+-webkit-text-fill-color: transparent;
+}
+
+    /* List Styling */
+    article {
+        display: flex;
+        align-items: flex-start;
+        gap: 15px;
+        margin-bottom: 20px;
+    }
+
+    /* Icons */
+    .icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: #f5f5f5;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 20px;
+        color: #333;
+    }
+
+    .pink .icon {
+        color: #ff168a;
+    }
+
+    .green .icon {
+        color: #0f6b4c;
+    }
+
+    article p {
+        font-size: 18px;
+        margin: 0;
+        line-height: 1.6;
+    }
+
+    article p strong {
+        font-weight: 600;
+        text-decoration: underline;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .container {
+            flex-direction: column;
+            gap: 50px;
+        }
+
+        .vertical-line {
+            display: none;
+        }
+    }
+  /* Future Section Styling */
+.future-section {
+display: flex;
+align-items: center;
+justify-content: space-between;
+max-width: 1200px;
+margin: 50px auto;
+padding: 40px;
+border: 2px solid #28A48E;
+border-radius: 12px;
+background: #f9f9f9;
+}
+
+/* Text Section - Left */
+.future-text {
+flex: 1;
+text-align: left;
+}
+
+.future-text h1 {
+font-family: 'Poppins', sans-serif;
+font-size: 48px;
+font-weight: 700;
+line-height: 1.2;
+color: black;
+}
+
+.future-text h1 span {
+color: #28A48E;
+}
+
+.future-text p {
+font-family: 'Poppins', sans-serif;
+font-size: 18px;
+font-weight: 400;
+color: #333;
+line-height: 1.6;
+}
+
+/* Image Section - Right (Slightly smaller size) */
+.future-image {
+flex: 0.5;
+display: flex;
+justify-content: flex-end;
+}
+
+.future-image img {
+width: 250px;  /* Appropriate size */
+height: auto;
+display: block;
+border-radius: 10px;
+box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+.future-image img {
+    width: 230px;
+}
+
+.future-text h1 {
+    font-size: 36px;
+}
+
+.future-text p {
+    font-size: 16px;
+}
+}
+
+@media (max-width: 768px) {
+.future-section {
+    flex-direction: column;
+    text-align: center;
+    padding: 30px;
+}
+
+.future-text {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.future-image {
+    justify-content: center;
+}
+
+.future-image img {
+    width: 200px;
+}
+
+.future-text h1 {
+    font-size: 32px;
+}
+
+.future-text p {
+    font-size: 16px;
+}
+}
+/* Free Trial Section */
+.free-trial-section {
+background: linear-gradient(135deg, #d7e7ea, #a0e2e8); /* Matching gradient */
+color: rgb(17, 2, 2);
+text-align: center;
+padding: 60px 20px;
+border-radius: 0px; /* Full-width, so no rounded edges */
+width: 100%;
+}
+
+.free-trial-section h2 {
+font-size: 36px;
+font-weight: 600;
+font-family: 'Poppins', sans-serif;
+margin-bottom: 10px;
+}
+
+.free-trial-section p {
+font-size: 18px;
+font-family: 'Poppins', sans-serif;
+opacity: 0.9;
+margin-bottom: 25px;
+}
+/* Passion Section */
+.passion-section {
+display: flex;
+justify-content: space-between;
+align-items: center;
+max-width: 1000px;
+margin: 60px auto;
+padding: 20px;
+}
+
+/* Left Side: Big Text */
+.passion-text h1 {
+font-size: 3rem;
+font-weight: bold;
+color: #000;
+margin: 0;
+font-family: Arial, sans-serif;
+}
+
+/* Blue text effect */
+.passion-text span {
+color: #3366ff;
+}
+
+/* Right Side: Box with text */
+.passion-box {
+padding: 30px;
+border: 2px solid #3366ff;
+border-radius: 10px;
+max-width: 550px;
+font-family: Arial, sans-serif;
+}
+
+/* Inside the box */
+.passion-box p {
+padding: 20px;
+font-size: 1.3rem;
+color: #000;
+margin: 0;
+}
+
+/* Blue text inside the box */
+.passion-box span {
+color: #3366ff;
+font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+.passion-section {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+}
+
+.passion-text h1 {
+    font-size: 2.5rem;
+}
+
+.passion-box {
+    max-width: 100%;
+    text-align: center;
+}
+}
+/* Buttons */
+.button-container {
+display: flex;
+justify-content: center;
+gap: 15px;
+}
+
+.trial-button, .premium-button {
+font-size: 18px;
+font-weight: 600;
+padding: 12px 30px;
+border-radius: 50px;
+text-decoration: none;
+transition: all 0.3s ease-in-out;
+border: 2px solid rgb(30, 3, 3);
+}
+
+/* Free Trial Button */
+.trial-button {
+color: black;
+background-color: #87dfa3;
+}
+
+.trial-button:hover {
+background-color: transparent;
+color: rgb(27, 2, 2);
+}
+
+/* Premium Button */
+.premium-button {
+background-color: transparent;
+color: rgb(20, 5, 5);
+}
+
+.premium-button:hover {
+background-color: white;
+color: #060111;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+.button-container {
+    flex-direction: column;
+    gap: 10px;
+}
+
+.trial-button, .premium-button {
+    width: 80%;
+    text-align: center;
+}
+}
+/* Testimonials Section */
+.testimonials-section {
+text-align: center;
+padding: 50px 20px;
+background-color: #fcf7f0;
+}
+
+.testimonials-section h2 {
+font-family: 'Poppins', sans-serif;
+font-size: 36px;
+font-weight: 700;
+margin-bottom: 40px;
+}
+
+.testimonial-cards {
+display: flex;
+justify-content: space-between;
+gap: 30px;
+max-width: 1200px;
+margin: auto;
+flex-wrap: wrap; /* Allow cards to wrap but they will fit in a single line */
+padding: 0 15px;
+}
+
+.testimonial-card {
+background-color: white;
+padding: 30px;
+width: 300px; /* Fixed width for consistency */
+border-radius: 10px;
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+text-align: left;
+transition: transform 0.3s ease-in-out;
+flex-grow: 1;
+flex-shrink: 1;
+min-width: 250px; /* Ensures cards don't shrink too small */
+box-sizing: border-box; /* Ensures padding is included in the width calculation */
+margin-bottom: 20px; /* Adds spacing between rows */
+}
+
+/* Hover Effect */
+.testimonial-card:hover {
+transform: scale(1.05);
+}
+
+/* Text styling */
+.testimonial-card p {
+font-size: 16px;
+line-height: 1.6;
+color: #333;
+}
+
+.testimonial-card p strong {
+font-weight: bold;
+}
+
+.testimonial-card p span {
+font-size: 14px;
+color: #666;
+}
+
+/* Link styling */
+.testimonial-card a {
+color: #5624d0;
+text-decoration: none;
+font-weight: 600;
+margin-top: 15px;
+display: inline-block;
+}
+
+.testimonial-card a:hover {
+text-decoration: underline;
+}
+
+/* Media Queries for responsiveness */
+@media (max-width: 1024px) {
+.testimonial-cards {
+    justify-content: center; /* Center the cards on medium screens */
+}
+
+.testimonial-card {
+    width: 45%; /* Make cards take up 45% of the width */
+    margin-bottom: 20px; /* Add space between rows */
+}
+}
+
+@media (max-width: 768px) {
+.testimonial-cards {
+    justify-content: center; /* Center cards on smaller screens */
+    padding: 0 10px; /* Add padding for smaller screens */
+}
+
+.testimonial-card {
+    width: 90%; /* Make each card take up 90% of the screen width */
+    margin-bottom: 20px; /* Space between stacked cards */
+}
+
+.testimonial-section h2 {
+    font-size: 28px; /* Adjust heading size for mobile */
+}
+}
+
+@media (max-width: 480px) {
+.testimonial-card {
+    width: 100%; /* Cards take up full width on very small screens */
+    padding: 20px; /* Slightly reduce padding on small screens */
+}
+
+.testimonial-section h2 {
+    font-size: 24px; /* Adjust heading size for extra small screens */
+}
+}
+
+
+    /* Footer */
+   
+
+</style>
+{% endblock %}
+
+{% block main %}
+
+
+
+<div class="title-section">
+    <div class="text-container">
+        <h1 class="title">UPSKILZ</h1>
+        <p class="subtitle">Learn from the best, be your best</p>
+    </div>
+    <div class="image-container">
+        <img src="/static/images/Team.gif" alt="Upskilz Image" class="image">
+    </div>
+</div>
+<!-- Skills Section -->
+<div class="skills-section">
+<h1>All the skills you need in one place</h1>
+<p>From critical skills to technical topics, Upskilz supports your professional development.</p>
+</div>
+
+<!-- Category Navigation Section -->
+<div class="category-container">
+<div class="category-pill">Web Development<span>4M+ learners</span></div>
+<div class="category-pill">Aritifical Intelligence(AI)<span>7M+ learners</span></div>
+<div class="category-pill">Game Development <span>47.7M+ learners</span></div>
+<div class="category-pill">Enterpreneurship<span>8M+ learners</span></div>
+<div class="category-pill">Digital Marketing<span>2M+ learners</span></div>
+<div class="category-pill">Business <span>3M+ learners</span></div>
+<div class="category-pill">Finance <span>1M+ learners</span></div>
+</div>
+
+
+<div class="courses-section">
+    <h2>Top Picks for Top Learners!</h2>
+    <div class="carousel-container">
+        <div class="carousel">
+            <div class="card">
+                <img src="/static/images/movie1.jpeg" alt="Movie 1">
+                <div class="overlay">
+                    <span class="badge">New</span>
+                    <h3>DIANE WARREN <br> <span>GEN AI</span></h3>
+                    <p>A Documentary by Bess Kargman</p>
+                    <span class="time">1 hour 32 minutes</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="/static/images/movie2.jpeg" alt="Movie 2">
+                <div class="overlay">
+                    <h3>IT AND SOFTWARE</h3>
+                    <p>With Leading Experts</p>
+                    <span class="time">24 hours</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="/static/images/movie 3.jpeg" alt="Movie 3">
+                <div class="overlay">
+                    <h3>Health and fitness</h3>
+                    <p>Scripting Your Own Success</p>
+                    <span class="time">1 hour 7 minutes</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="/static/images/movie 4.jpeg" alt="Movie 4">
+                <div class="overlay">
+                    <span class="badge">New</span>
+                    <h3>Game Development</h3>
+                    <p>With Halle Berry and Leading Experts</p>
+                    <span class="time">1 hour 33 minutes</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="/static/images/movie 5.jpg" alt="Movie 5">
+                <div class="overlay">
+                    <span class="badge">New</span>
+                    <h3>Design</h3>
+                    <p>Designing a Home That Tells Your Story</p>
+                    <span class="time">1 hour 25 minutes</span>
+                </div>
+            </div>
+            <div class="card">
+                <img src="/static/images/movie 6.jpg" alt="Movie 6">
+                <div class="overlay">
+                    <span class="badge">New</span>
+                    <h3>Music</h3>
+                    <p>Enjoy the life with you music</p>
+                    <span class="time">2 hour 25 minutes</span>
+                </div>
+            </div>
+            <div class="card">
+                <img src="/static/images/movie 7.jpg" alt="Movie 7">
+                <div class="overlay">
+                    <span class="badge">New</span>
+                    <h3>Finance and Accounting</h3>
+                    <p>Empowering your financial future, one calculation at a time</p>
+                    <span class="time">1 hour 25 minutes</span>
+                </div>
+            </div>
+            <div class="card">
+                <img src="/static/images/movie 8.jpg" alt="Movie 8">
+                <div class="overlay">
+                    <span class="badge">New</span>
+                    <h3>Food Beverage</h3>
+                    <p>Savor the flavor, experience the excellence</p>
+                    <span class="time">1 hour 25 minutes</span>
+                </div>
+            </div>
+            <div class="card">
+                <img src="/static/images/movie 8.jpg" alt="Movie 5">
+                <div class="overlay">
+                    <span class="badge">New</span>
+                    <h3>Cyber Security</h3>
+                    <p>Securing your digital world, one step at a time.</p>
+                    <span class="time">1 hour 25 minutes</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- yahan pe diagram die vala  -->
+<!-- Concepts Section (Image on Left, Text on Right) -->
+<div class="concepts-section">
+    <div class="concepts-image">
+        <img src="https://brilliant.org/images/homepage/concepts-that-click.svg" alt="Concepts Illustration">
+    </div>
+    <div class="concepts-text">
+        <h1>Concepts <br> that Click</h1>
+        <p>Interactive lessons make even complex ideas easy to grasp. Instant, custom feedback accelerates your understanding.</p>
+    </div>
+</div>
+<!-- teachers section -->
+ <!-- Teachers Section Title -->
+<h1 class="teachers-title">Meet the Masters Behind the Skills – Our Teachers & Partner Companies!</h1>
+<main>
+    <div class="slider" style="
+    --width: 100px;
+    --height: 50px;
+    --quantity: 10;
+">
+    <div class="list">
+        <div class="item" style="--position: 1"><img src="slider1_1.png" alt=""></div>
+        <div class="item" style="--position: 2"><img src="slider1_2.png" alt=""></div>
+        <div class="item" style="--position: 3"><img src="slider1_3.png" alt=""></div>
+        <div class="item" style="--position: 4"><img src="slider1_4.png" alt=""></div>
+        <div class="item" style="--position: 5"><img src="./slider1_5.png" alt=""></div>
+        <div class="item" style="--position: 6"><img src="slider1_6.png" alt=""></div>
+        <div class="item" style="--position: 7"><img src="./slider1_7.png" alt=""></div>
+        <div class="item" style="--position: 8"><img src="./slider1_8.png" alt=""></div>
+        <div class="item" style="--position: 9"><img src="./slider1_9.png" alt=""></div>
+        <div class="item" style="--position: 10"><img src="./slider1_10.png" alt=""></div>
+    </div>
+</div>
+
+<div class="slider" reverse="true" style="
+    --width: 200px;
+    --height: 200px;
+    --quantity: 9;
+">
+    <div class="list">
+        <div class="item" style="--position: 1"><img src="https://img.freepik.com/free-photo/smiley-teacher-holding-tablet_23-2148668619.jpg?ga=GA1.1.1311192313.1739540201&semt=ais_authors_boost" alt=""></div>
+        <div class="item" style="--position: 2"><img src="https://img.freepik.com/free-photo/woman-teaching-classroom_23-2151696416.jpg?ga=GA1.1.1311192313.1739540201&semt=ais_authors_boost" alt=""></div>
+        <div class="item" style="--position: 3"><img src="https://img.freepik.com/free-photo/front-view-man-classroom_23-2150444920.jpg?ga=GA1.1.1311192313.1739540201&semt=ais_authors_boost" alt=""></div>
+        <div class="item" style="--position: 4"><img src="https://img.freepik.com/free-photo/woman-teaching-classroom_23-2151696436.jpg?ga=GA1.1.1311192313.1739540201&semt=ais_authors_boost" alt=""></div>
+        <div class="item" style="--position: 5"><img src="https://img.freepik.com/free-photo/senior-male-professor-with-arms-crossed-standing-against-chalkboard_23-2148200953.jpg?ga=GA1.1.1311192313.1739540201&semt=ais_authors_boost" alt=""></div>
+        <div class="item" style="--position: 6"><img src="https://img.freepik.com/free-photo/woman-teaching-classroom_23-2151696415.jpg?ga=GA1.1.1311192313.1739540201&semt=ais_authors_boost" alt=""></div>
+        <div class="item" style="--position: 7"><img src="https://img.freepik.com/free-photo/woman-teaching-classroom_23-2151696414.jpg?ga=GA1.1.1311192313.1739540201&semt=ais_authors_boost" alt=""></div>
+        <div class="item" style="--position: 8"><img src="https://img.freepik.com/premium-photo/female-teacher-school_23-2149511056.jpg?ga=GA1.1.1311192313.1739540201&semt=ais_authors_boost" alt=""></div>
+        <div class="item" style="--position: 9"><img src="https://img.freepik.com/free-photo/portrait-professor-work-educational-system_23-2151737200.jpg?ga=GA1.1.1311192313.1739540201&semt=ais_authors_boost" alt=""></div>
+    </div>
+</div>
+</main>
+<!-- boxes -->
+<div class="spacer"></div>
+
+<!-- Green & Pink Boxes -->
+<div class="container">
+<!-- Green Section - Left -->
+<section class="green">
+    <h2><span>Sell</span> with confidence</h2>
+
+    <article>
+        <div class="icon"><i class="fas fa-credit-card"></i></div>
+        <p>Get full control of your business by processing and managing payments directly on our platform with <strong>Thinkific Payments</strong></p>
+    </article>
+
+    <article>
+        <div class="icon"><i class="fas fa-chart-line"></i></div>
+        <p>Increase order value up to 22% more with <strong>Group Orders</strong> — a feature of our proven selling and payments solution, <strong>TCommerce</strong></p>
+    </article>
+
+    <article>
+        <div class="icon"><i class="fas fa-chart-pie"></i></div>
+        <p>Understand how your business is performing with <strong>Enhanced Reporting</strong> to make smarter business decisions to optimize and sell more</p>
+    </article>
+</section>
+
+<!-- Vertical Line -->
+<div class="vertical-line"></div>
+
+<!-- Pink Section - Right -->
+<section class="pink">
+    <h2><span>Choose</span> from a wide variety of learning products</h2>
+
+    <article>
+        <div class="icon"><i class="fas fa-book"></i></div>
+        <p>Turn your expertise into cash with <strong>Digital Downloads, Courses</strong>, and <strong>Live Events</strong></p>
+    </article>
+
+    <article>
+        <div class="icon"><i class="fas fa-rocket"></i></div>
+        <p>Start your products from scratch or use our AI-powered tools to get there faster</p>
+    </article>
+
+    <article>
+        <div class="icon"><i class="fas fa-cogs"></i></div>
+        <p>Focus on creating while we take care of the heavy lifting — no tech expertise required</p>
+    </article>
+</section>
+</div>
+<!-- Future Section -->
+<div class="future-section">
+<div class="future-text">
+    <h1>The <span>future is yours</span> for the taking</h1>
+    <p>
+        Unlock your potential and turn your passion into a thriving career. The journey begins now!
+    </p>
+</div>
+<div class="future-image">
+    <img src="/static/images/new.jpeg" alt="Future Vision">
+</div>
+</div>
+<!-- Free Trial Section -->
+<div class="free-trial-section">
+<h2>Start your free trial</h2>
+<p>Join now and explore all premium features with no commitments.</p>
+<div class="button-container">
+    <a href="#" class="trial-button">Start Free 14-Day Trial</a>
+    <a href="{{ url_for('subscribe' ) }}" class="premium-button">Subscribe to Premium</a>
+</div>
+</div>
+<!-- Passion Section -->
+<div class="passion-section">
+<div class="passion-text">
+    <h1>Passion pays.<br>Let's <span>find your people.</span></h1>
+</div>
+<div class="passion-box">
+    <p>Your passion led you here — now let it flourish alongside 
+        <span>a collective of like-minded creators</span> through community-driven education.</p>
+</div>
+</div>
+<!-- testimonial section -->
+<div class="testimonials-section">
+<h2>See what others are achieving through learning</h2>
+<div class="testimonial-cards">
+    <div class="testimonial-card">
+        <p>"Upskilz was rated the most popular online course or certification program for learning how to code according to StackOverflow's 2023 Developer survey."</p>
+        <p><strong>StackOverflow</strong> <span>37,076 responses collected</span></p>
+        <a href="#">View Web Development courses &gt;</a>
+    </div>
+
+    <div class="testimonial-card">
+        <p>"Upskilz was truly a game-changer and a great guide for me as we brought Dimensional to life."</p>
+        <p><strong>Alvin Lim</strong><br><span>Technical Co-Founder, CTO at Dimensional</span></p>
+        <a href="#">View this iOS & Swift course &gt;</a>
+    </div>
+
+    <div class="testimonial-card">
+        <p>"Upskilz  gives you the ability to be persistent. I learned exactly what I needed to know in the real world. It helped me sell myself to get a new role."</p>
+        <p><strong>William A. Wachlin</strong><br><span>Partner Account Manager at Amazon Web Services</span></p>
+        <a href="#">View this AWS course &gt;</a>
+    </div>
+</div>
+</div>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const carousel = document.querySelector(".carousel");
+
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        carousel.addEventListener("mousedown", (e) => {
+            isDown = true;
+            startX = e.pageX - carousel.offsetLeft;
+            scrollLeft = carousel.scrollLeft;
+        });
+
+        carousel.addEventListener("mouseleave", () => isDown = false);
+        carousel.addEventListener("mouseup", () => isDown = false);
+
+        carousel.addEventListener("mousemove", (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - carousel.offsetLeft;
+            const walk = (x - startX) * 2;
+            carousel.scrollLeft = scrollLeft - walk;
+        });
+    });
+</script>
+
+{% endblock %}
+
+   
